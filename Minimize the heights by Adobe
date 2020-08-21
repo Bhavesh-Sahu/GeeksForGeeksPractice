@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n,k;
+		cin>>k>>n;
+		vector<int>v(n);
+		for(int i=0;i<n;i++){
+			cin>>v[i];
+		}
+		sort(v.begin(),v.end());
+		int nor1=v[0],nor2=v[n-1];
+		float mid=(v[n-1]+v[0])/2;
+		for(int i=0;i<n;i++){
+		    if(v[i]>mid){
+		        v[i] -= k;
+		    }
+		    else{
+		        v[i] += k;
+		    }
+		}
+		sort(v.begin(),v.end());
+		if(nor2-nor1 < v[n-1]-v[0]){
+		    cout<<nor2-nor1<<"\n";
+		}
+		else
+		    cout<<v[n-1]-v[0]<<"\n";
+	}
+}
