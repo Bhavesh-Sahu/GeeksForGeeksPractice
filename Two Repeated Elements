@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		int num;
+		bool b=1;
+		unordered_set<int>uset;
+		for(int i=0;i<n+2;i++){
+			cin>>num;
+			//cout<<num<<'\n';
+			if(uset.find(num) != uset.end()){
+			    if(b){
+			        b= 0;
+			        cout<<num;
+			    }
+			    else
+			        cout<<" "<<num;
+			}
+			uset.insert(num);
+		}
+		cout<<endl;
+	}
+}
