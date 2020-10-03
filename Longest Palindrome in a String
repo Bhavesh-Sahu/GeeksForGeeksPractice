@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string subs(string s, int st, int e) {
+    string ss = "";
+    for (int i = st; i < e; i++) {
+        ss = ss + s[i];
+    }
+    return ss;
+}
+
+
+int main() {
+
+    //code
+    int t;
+    cin >> t;
+    while (t--) {
+        string s;
+        cin >> s;
+        int n = s.length();
+        int dp[n][n];
+        memset(dp, 0, sizeof(dp));
+
+        for (int i = 0; i < n; i++)
+            dp[i][i] = 1;
+
+        int maxlen = 1;
+        int st = 0, e = 0;
+        for (int i = 0; i < n - 1; i++) {
+            if (s[i] == s[i + 1]) {
+                dp[i][i + 1] = 1;
+                if (maxlen < 2) {
+                    st = i;
+                }
+                maxlen = 2;
+            }
+        }
+
+        for (int k = 2; k < n; k++) {
+            int j = k;
+            for (int i = 0; i < n - k; i++) {
+                if (s[i] == s[j] && dp[i + 1][j - 1] == 1) {
+                    dp[i][j] = 1;
+                    if (maxlen < j - i + 1) {
+                        maxlen = j - i + 1;
+                        st = i;
+                        e = j;
+                    }
+
+                }
+                j++;
+            }
+
+        }
+        if (maxlen > 1)
+            cout << subs(s, st, maxlen + st) << "\n";
+        else
+            cout << s[st] << "\n";
+    }
+    return 0;
+}
