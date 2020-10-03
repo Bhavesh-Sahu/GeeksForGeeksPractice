@@ -1,0 +1,27 @@
+int atoi(string str)
+{
+    //Your code here
+    int res=0;
+    int n = str.length();
+    int i=0;
+    bool m=0;
+    if(str[0]=='-'){
+        i++;
+        m=1;
+        n--;
+    }
+    while(n>0){
+        int x = str[i] - '0';
+        if(x>=0 && x<=9){
+            res = res * 10 + x;
+        }
+        else{
+            return -1;
+        }
+        i++;
+        n--;
+    }
+    if(m)
+        return -1*res;
+    return res;
+}
