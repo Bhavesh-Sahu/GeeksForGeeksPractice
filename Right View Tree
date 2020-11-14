@@ -1,0 +1,32 @@
+int max_level;
+vector<int>v;
+void rV(Node *root,int level){
+
+    if(level > max_level){
+        max_level = level;
+        v.push_back(root->data);
+    }
+    
+    if(root->right != NULL)
+       rV(root->right,level+1);
+    
+    if(root->left != NULL)
+       rV(root->left,level+1);
+     
+    return;
+    
+}
+
+
+vector<int> rightView(Node *root)
+{
+   // Your Code here
+   
+   max_level=0;
+   v.clear();
+   if(root == NULL)
+     return v;
+   rV(root,1);
+   
+   return v;
+}
