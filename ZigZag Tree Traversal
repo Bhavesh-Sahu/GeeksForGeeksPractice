@@ -1,0 +1,58 @@
+vector <int> zigZagTraversal(Node* root)
+{
+	// Code here
+	vector<int>v;
+	if(root == NULL)
+	    return v;
+	
+	
+	int he=1;
+	stack<Node *>q;
+	stack<Node *>s;
+	q.push(root);
+	
+	while(q.empty()==false || s.empty()==false){
+	    if(he%2!=0 ){
+	        if(q.empty()==true){
+	            he++;
+	            continue;
+	        }
+	        root = q.top();
+	        //cout<<root->data<<" ";
+	        v.push_back(root->data);
+	        q.pop();
+	        if(root->left)
+	        {
+	            s.push(root->left);
+	        }
+            if(root->right)
+	        {
+	            s.push(root->right);
+	        }
+	   
+	    }
+	    else if(he%2==0){
+	        if(s.empty()==true){
+	            he++;
+	            continue;
+	        }
+	        root = s.top();
+	        v.push_back(root->data);
+	        s.pop();
+	        if(root->right){
+	            q.push(root->right);
+	        }
+	        if(root->left){
+	            q.push(root->left);
+	        }
+	        
+	    }
+	   
+	    
+	  
+	}
+	
+	
+	return v;
+	
+}
