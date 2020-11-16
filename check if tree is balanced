@@ -1,0 +1,29 @@
+int CB(Node* root){
+    if(root == NULL)
+        return 0;
+    
+    int l = CB(root->left);
+    if(l==-1)
+        return -1;
+    //  Your Code here
+    int r = CB(root->right);
+    if(r==-1)
+        return -1;
+    
+    if(abs(l-r)>1)
+        return -1;
+    
+    return 1 + max(r,l);
+    
+}
+bool isBalanced(Node *root)
+{
+    int x = CB(root);
+    if(x==-1)
+        return false;
+    else 
+        return true;
+    
+    
+    
+}
