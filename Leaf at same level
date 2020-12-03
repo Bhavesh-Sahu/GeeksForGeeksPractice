@@ -1,0 +1,38 @@
+int lf(Node *root){
+     if(root->left==NULL && root->right==NULL){
+        return 0;
+     }
+        
+    if(root->left)
+         return 1+lf(root->left);
+    else if(root->right){
+         return 1+ lf(root->right);
+    }
+
+    
+}
+
+bool check(Node *root,int h,int ch){
+    if(root->left==NULL && root->right==NULL && h==ch)
+        return 1;
+    else if(root->left==NULL && root->right==NULL && h!=ch)
+        return 0;
+    
+    bool l=true;
+    bool r= true;
+    if(root->left){
+        l = check(root->left,h+1,ch);
+    }
+    if(root->right)
+        r = check(root->right,h+1,ch);
+    
+    return l&r;
+        
+}
+
+bool check(Node *root)
+{
+    //Your code here
+    int h = lf(root);
+    return check(root,0,h);
+}
