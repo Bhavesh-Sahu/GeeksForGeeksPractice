@@ -1,0 +1,18 @@
+int sum(Node* root){
+    if(root==NULL)
+        return 0;
+    int l = sum(root->left);
+    int r = sum(root->right);
+    return root->data + l+r;
+}
+int solve(Node* root){
+    if(root==NULL)
+        return 1;
+    int l=sum(root->left);
+    int r=sum(root->right);
+    if(l+r==root->data && solve(root->left) && solve(root->right))
+        return 1;
+    else 
+        return -1;
+    
+}
