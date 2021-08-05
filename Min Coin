@@ -1,0 +1,30 @@
+class Solution{
+	public:
+	int fuc(vector<int>nums, int amount,int n,vector<vector<int>>&vec){
+	    if(n==0)
+	        return vec[n][amount]=INT_MAX-1;
+	    if(amount==0){
+	        return vec[n][amount]=0;
+	    }
+	    if(vec[n][amount]!=-1)
+	        return vec[n][amount];
+	    if(amount>=nums[n-1]){
+	        return vec[n][amount]=min(1+fuc(nums,amount-nums[n-1],n,vec),fuc(nums,amount,n-1,vec));
+	    }
+	    else{
+	        return vec[n][amount]=fuc(nums,amount,n-1,vec);
+	    }
+	}
+	int MinCoin(vector<int>nums, int amount)
+	{
+	    // Code here
+	    int sz=nums.size();
+	    vector<vector<int>>dp(sz+1,vector<int>(amount+1,-1));
+	    int ans = fuc(nums,amount,sz,dp);
+	    if(ans>=INT_MAX-1){
+	        return -1;
+	    }
+	    else
+	        return ans;
+	}
+};
