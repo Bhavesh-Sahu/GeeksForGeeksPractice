@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//Nice code bruh...................make this change
 int main() {
 	//code
 	int t;
